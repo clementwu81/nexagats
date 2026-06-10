@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Clinical Research — NexaGATS Healthcare & Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#08152a;--teal:#0b9e9a;--teal2:#0ecbc5;--gold:#c5973e;
+  --light:#f7f9fc;--white:#fff;--muted:#617084;--text:#131f33;--border:#e4eaf3;
+}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;font-size:1rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:20px;height:20px;fill:white}
+.logo-name{font-size:14px;font-weight:500;color:var(--navy);line-height:1.2}
+.logo-sub{font-size:10px;color:var(--teal);font-weight:400;letter-spacing:0.06em}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+.lang-bar{display:flex;gap:4px}
+.lb{background:transparent;border:1px solid var(--border);color:var(--muted);padding:3px 9px;border-radius:5px;font-size:11px;cursor:pointer;transition:all .2s;font-family:inherit}
+.lb.active,.lb:hover{background:var(--teal);border-color:var(--teal);color:white}
+.page-hero{padding:120px 2rem 60px;background:var(--navy);position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;top:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,rgba(11,158,154,.15),rgba(14,203,197,.05));clip-path:polygon(10% 0,100% 0,100% 100%,0% 100%)}
+.page-hero-inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;letter-spacing:.05em;margin-bottom:2rem;transition:color .2s}
+.back-link:hover{color:var(--teal2)}
+.back-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.page-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(11,158,154,.12);border:1px solid rgba(11,158,154,.25);color:var(--teal2);padding:5px 14px;border-radius:30px;font-size:11px;font-weight:500;letter-spacing:0.08em;margin-bottom:1.25rem}
+.dot{width:6px;height:6px;background:var(--teal2);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.page-title{font-family:"Cormorant Garamond",serif;font-size:clamp(2.4rem,4vw,3.8rem);color:white;font-weight:400;line-height:1.15;margin-bottom:1rem}
+.page-title em{font-style:italic;color:var(--teal2)}
+.page-desc{font-size:.9rem;color:rgba(255,255,255,.55);max-width:560px;line-height:1.9;font-weight:300}
+.stats-bar{background:white;border-bottom:1px solid var(--border)}
+.stats-bar-inner{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:stretch}
+.stat-item{flex:1;padding:1.5rem 1rem;text-align:center;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:"Cormorant Garamond",serif;font-size:2rem;color:var(--teal);font-weight:400;line-height:1}
+.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.research-body{background:var(--light);padding:4rem 2rem 6rem}
+.research-inner{max-width:1280px;margin:0 auto}
+.papers-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.paper-card{background:white;border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;display:grid;grid-template-columns:4px 1fr}
+.paper-card:hover{box-shadow:0 16px 40px rgba(11,158,154,.1);border-color:rgba(11,158,154,.3);transform:translateY(-2px)}
+.paper-accent{background:var(--teal)}
+.paper-body{padding:2rem 2rem 2rem 1.75rem}
+.paper-meta-top{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.paper-year{background:rgba(11,158,154,.08);color:var(--teal);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;letter-spacing:.05em}
+.paper-journal{background:var(--light);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
+.paper-tag{background:rgba(197,151,62,.08);color:var(--gold);font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;letter-spacing:.05em;border:1px solid rgba(197,151,62,.2)}
+.paper-title{font-family:"Cormorant Garamond",serif;font-size:1.35rem;color:var(--navy);font-weight:600;line-height:1.35;margin-bottom:.5rem}
+.paper-authors{font-size:12px;color:var(--muted);margin-bottom:1.25rem;font-style:italic}
+.paper-divider{height:1px;background:var(--border);margin:1.25rem 0}
+.paper-summary-label{font-size:10px;font-weight:500;color:var(--teal);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.6rem}
+.paper-summary{font-size:13.5px;color:var(--muted);line-height:1.85;font-weight:300}
+.paper-findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;margin-top:1.25rem}
+.finding{background:var(--light);border:1px solid var(--border);border-radius:10px;padding:.875rem 1rem}
+.finding-num{font-family:"Cormorant Garamond",serif;font-size:1.6rem;color:var(--teal);font-weight:400;line-height:1}
+.finding-label{font-size:11px;color:var(--muted);line-height:1.5;margin-top:3px}
+footer{background:var(--navy);padding:1.75rem 2rem}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.fc{font-size:11px;color:rgba(255,255,255,.3)}
+[data-lang]{display:none}[data-lang].active{display:block}
+span[data-lang]{display:none}span[data-lang].active{display:inline}
+@media(max-width:768px){
+  .stats-bar-inner{flex-wrap:wrap}
+  .stat-item{flex:1 1 50%;border-bottom:1px solid var(--border)}
+  .paper-findings{grid-template-columns:1fr 1fr}
+  .page-hero{padding:100px 1.25rem 50px}
+  .research-body{padding:2.5rem 1.25rem 4rem}
+  .nav-links{gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v5c0 4.4 3.4 8.5 8 9.5 4.6-1 8-5.1 8-9.5V7l-8-5zm0 4l5 3v4c0 2.9-2.2 5.6-5 6.5-2.8-.9-5-3.6-5-6.5V9l5-3z"/></svg></div>
+      <div><div class="logo-name">NexaGATS</div><div class="logo-sub">Healthcare &amp; Technology</div></div>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="index.html#products"><span data-lang="en" class="active">Products</span><span data-lang="zh">产品</span></a>
+        <a href="research.html" class="active"><span data-lang="en" class="active">Research</span><span data-lang="zh">研究</span></a>
+        <a href="index.html#contact"><span data-lang="en" class="active">Contact</span><span data-lang="zh">联系</span></a>
+      </div>
+      <div class="lang-bar">
+        <button class="lb active" onclick="setLang('en')">EN</button>
+        <button class="lb" onclick="setLang('zh')">中文</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <a class="back-link" href="index.html">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      <span data-lang="en" class="active">Back to main site</span>
+      
+      <span data-lang="zh">返回主页</span>
+    </a>
+    <div class="page-badge"><span class="dot"></span>
+      <span data-lang="en" class="active">PEER-REVIEWED CLINICAL EVIDENCE</span>
+      
+      <span data-lang="zh">同行评审临床依据</span>
+    </div>
+    <h1 class="page-title">
+      <span data-lang="en" class="active">The Science Behind<br/><em>Thermal Tomography</em></span>
+      
+      <span data-lang="zh">热层析成像背后的<br/><em>科学依据</em></span>
+    </h1>
+    <p class="page-desc">
+      <span data-lang="en" class="active">Haobo's thermal tomography platform is backed by 8 peer-reviewed publications spanning over a decade of clinical validation — across tens of thousands of confirmed cases at leading Chinese medical institutions.</span>
+      
+      <span data-lang="zh">昊博热层析成像平台获8篇同行评审论文支持，涵盖逾十年临床验证——经中国顶尖医疗机构数万例确诊病例证实。</span>
+    </p>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-label"><span data-lang="en" class="active">Peer-Reviewed Papers</span><span data-lang="zh">同行评审论文</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">34,977</div>
+      <div class="stat-label"><span data-lang="en" class="active">Clinical Cases</span><span data-lang="zh">临床病例</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">97.1%</div>
+      <div class="stat-label"><span data-lang="en" class="active">Accuracy &lt;2cm</span><span data-lang="zh">小于2cm准确率</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2008–2017</div>
+      <div class="stat-label"><span data-lang="en" class="active">Publication Span</span><span data-lang="zh">发表年份跨度</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0</div>
+      <div class="stat-label"><span data-lang="en" class="active">Radiation Exposure</span><span data-lang="zh">辐射暴露</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="research-body">
+  <div class="research-inner">
+    <div class="papers-grid">
+
+      <!-- Paper 1 -->
+      <div class="paper-card">
+        <div class="paper-accent"></div>
+        <div class="paper-body">
+          <div class="paper-meta-top">
+            <span class="paper-year">2017</span>
+            <span class="paper-journal">Oncotarget</span>
+            <span class="paper-tag"><span data-lang="en" class="active">Treatment Monitoring</span><span data-lang="zh">治疗监测</span></span>
+          </div>
+          <div class="paper-title">
+            <span data-lang="en" class="active">Thermal tomography for monitoring tumor response to neoadjuvant chemotherapy in locally advanced breast cancer</span>
+            
+            <span data-lang="zh">热层析成像监测局部晚期乳腺癌肿瘤对新辅助化疗的反应</span>
+          </div>
+          <div class="paper-authors">Wuhan University</div>
+          <div class="paper-divider"></div>
+          <div class="paper-summary-label"><span data-lang="en" class="active">Summary</span><span data-lang="zh">摘要</span></div>
+          <p class="paper-summary">
+            <span data-lang="en" class="active">This study investigated thermal tomography as a non-invasive tool for tracking how locally advanced breast cancer tumours respond to neoadjuvant (pre-surgical) chemotherapy. By measuring changes in the internal heat source profile of the breast at multiple treatment timepoints, the technology was able to reflect tumour metabolic activity — providing clinicians with an objective, radiation-free alternative for treatment response assessment. The findings support thermal tomography as a real-time monitoring companion throughout the full chemotherapy cycle, enabling earlier identification of non-responders without exposing patients to additional radiation.</span>
+            
+            <span data-lang="zh">本研究探讨了热层析成像作为无创工具，用于追踪局部晚期乳腺癌肿瘤对新辅助（术前）化疗的反应。通过在多个治疗时间点测量乳房内热源分布变化，该技术能够反映肿瘤代谢活性——为临床医生提供无辐射的客观治疗反应评估替代方案。研究结果支持将热层析成像作为整个化疗周期的实时监测工具，可在不增加辐射暴露的情况下更早识别无效病例。</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Paper 2 -->
+      <div class="paper-card">
+        <div class="paper-accent"></div>
+        <div class="paper-body">
+          <div class="paper-meta-top">
+            <span class="paper-year">2014</span>
+            <span class="paper-journal">Asian Biomedicine</span>
+            <span class="paper-tag"><span data-lang="en" class="active">Comparative Study</span><span data-lang="zh">对比研究</span></span>
+          </div>
+          <div class="paper-title">
+            <span data-lang="en" class="active">Comparison of mammography, ultrasonography, and far-infrared thermography in screening and early diagnosis of breast cancer</span>
+            
+            <span data-lang="zh">乳腺X线、超声与远红外热成像在乳腺癌筛查及早期诊断中的比较</span>
+          </div>
+          <div class="paper-authors">Wuhan University Renmin Hospital</div>
+          <div class="paper-divider"></div>
+          <div class="paper-summary-label"><span data-lang="en" class="active">Summary</span><span data-lang="zh">摘要</span></div>
+          <p class="paper-summary">
+            <span data-lang="en" class="active">Conducted across 2,036 patients, this head-to-head comparison evaluated far-infrared thermography alongside the two most widely used breast imaging modalities — mammography and ultrasonography. The study assessed each modality's sensitivity, specificity, and overall diagnostic accuracy for screening and early-stage detection. Thermography demonstrated competitive performance across the cohort, with a particular advantage in younger patients with denser breast tissue where mammography is known to underperform. As a completely radiation-free option, it offers a compelling case for use as a first-line or supplementary screening tool across diverse patient populations.</span>
+            
+            <span data-lang="zh">本研究纳入2036例患者，将远红外热成像与乳腺X线及超声进行直接比较，评估各模态的灵敏度、特异度及总体诊断准确率。热成像在整个队列中表现出竞争性，尤其在乳腺组织致密的年轻患者中优势显著——而这正是乳腺X线已知表现欠佳的人群。作为完全无辐射的选择，它在多元患者群体中作为一线或辅助筛查工具具有重要价值。</span>
+          </p>
+          <div class="paper-findings">
+            <div class="finding">
+              <div class="finding-num">2,036</div>
+              <div class="finding-label"><span data-lang="en" class="active">Patients enrolled</span><span data-lang="zh">入组患者</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">3</div>
+              <div class="finding-label"><span data-lang="en" class="active">Modalities compared</span><span data-lang="zh">对比模态数</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paper 3 -->
+      <div class="paper-card">
+        <div class="paper-accent"></div>
+        <div class="paper-body">
+          <div class="paper-meta-top">
+            <span class="paper-year">2015</span>
+            <span class="paper-journal">Biomedical Optics Express</span>
+            <span class="paper-journal">Journal of Biomedical Optics</span>
+            <span class="paper-tag"><span data-lang="en" class="active">Large-Scale Validation</span><span data-lang="zh">大规模验证</span></span>
+          </div>
+          <div class="paper-title">
+            <span data-lang="en" class="active">Q-r curve of thermal tomography and its clinical application on breast tumor diagnosis — 34,977 confirmed cases</span>
+            
+            <span data-lang="zh">热层析成像q-r曲线及其在乳腺肿瘤诊断中的临床应用——34977例确诊病例</span>
+          </div>
+          <div class="paper-authors">Wuhan University · Biomedical Optics Express &amp; Journal of Biomedical Optics, 2015</div>
+          <div class="paper-divider"></div>
+          <div class="paper-summary-label"><span data-lang="en" class="active">Summary</span><span data-lang="zh">摘要</span></div>
+          <p class="paper-summary">
+            <span data-lang="en" class="active">This landmark dual-publication study — the largest in the thermal tomography evidence base — validated the Q-r curve analytical framework across 34,977 confirmed breast tumour cases. The Q-r curve is Haobo's proprietary diagnostic signature derived from the internal heat source model, mapping thermal radiation patterns to characterise benign versus malignant lesions. Published simultaneously in two journals, it established the Q-r curve as a reproducible, standardised diagnostic criterion achieving 97.1% accuracy for lesions under 2cm — outperforming both mammography and ultrasonography in this clinically critical size range. This body of work remains the cornerstone of Haobo's clinical credibility.</span>
+            
+            <span data-lang="zh">这项里程碑式的双重期刊研究——热层析成像证据库中规模最大的研究——在34977例确诊乳腺肿瘤病例中验证了q-r曲线分析框架。两篇论文同步发表，确立了q-r曲线作为可重复、标准化诊断标准的地位，对小于2cm的病灶准确率达97.1%——在这一临床关键尺寸范围内超越了乳腺X线和超声检查。这项研究是昊博临床公信力的基石。</span>
+          </p>
+          <div class="paper-findings">
+            <div class="finding">
+              <div class="finding-num">34,977</div>
+              <div class="finding-label"><span data-lang="en" class="active">Confirmed cases</span><span data-lang="zh">确诊病例</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">97.1%</div>
+              <div class="finding-label"><span data-lang="en" class="active">Accuracy for lesions &lt;2cm</span><span data-lang="zh">小于2cm病灶准确率</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">2</div>
+              <div class="finding-label"><span data-lang="en" class="active">Journals published</span><span data-lang="zh">发表期刊数</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paper 4 -->
+      <div class="paper-card">
+        <div class="paper-accent"></div>
+        <div class="paper-body">
+          <div class="paper-meta-top">
+            <span class="paper-year">2015</span>
+            <span class="paper-journal">Genetics &amp; Molecular Research</span>
+            <span class="paper-tag"><span data-lang="en" class="active">Biopsy Correlation</span><span data-lang="zh">活检相关性</span></span>
+          </div>
+          <div class="paper-title">
+            <span data-lang="en" class="active">Clinical applications of internal heat source analysis for breast cancer identification</span>
+            
+            <span data-lang="zh">内热源分析在乳腺癌临床识别中的应用</span>
+          </div>
+          <div class="paper-authors">Wuhan University</div>
+          <div class="paper-divider"></div>
+          <div class="paper-summary-label"><span data-lang="en" class="active">Summary</span><span data-lang="zh">摘要</span></div>
+          <p class="paper-summary">
+            <span data-lang="en" class="active">This study evaluated the internal heat source analysis model across 948 patients, directly correlating thermal tomography diagnoses against biopsy-confirmed pathology results. The analysis achieved 93.2% agreement with biopsy — the gold standard in cancer diagnosis — demonstrating that thermal tomography can reliably characterise breast lesions without tissue extraction. The high concordance rate positions the technology as a credible non-invasive pre-biopsy assessment tool, capable of reducing unnecessary invasive procedures while maintaining the diagnostic confidence clinicians require.</span>
+            
+            <span data-lang="zh">本研究对948例患者的内热源分析模型进行评估，将热层析成像诊断与活检确认的病理结果直接对照。分析与活检（癌症诊断金标准）的符合率达93.2%，证明热层析成像能够在不取组织的情况下可靠地表征乳腺病变。高度一致性使该技术成为可信的无创活检前评估工具，可在保持临床所需诊断置信度的同时减少不必要的侵入性操作。</span>
+          </p>
+          <div class="paper-findings">
+            <div class="finding">
+              <div class="finding-num">948</div>
+              <div class="finding-label"><span data-lang="en" class="active">Patients enrolled</span><span data-lang="zh">入组患者</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">93.2%</div>
+              <div class="finding-label"><span data-lang="en" class="active">Agreement with biopsy</span><span data-lang="zh">与活检符合率</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paper 5 -->
+      <div class="paper-card">
+        <div class="paper-accent"></div>
+        <div class="paper-body">
+          <div class="paper-meta-top">
+            <span class="paper-year">2014</span>
+            <span class="paper-journal">Applied Thermal Engineering</span>
+            <span class="paper-tag"><span data-lang="en" class="active">Methodology</span><span data-lang="zh">方法学</span></span>
+          </div>
+          <div class="paper-title">
+            <span data-lang="en" class="active">A novel method of thermal tomography tumor diagnosis and its clinical practice — bio-heat transfer model with q-r curve</span>
+            
+            <span data-lang="zh">热层析成像肿瘤诊断新方法及其临床实践——生物传热模型与q-r曲线</span>
+          </div>
+          <div class="paper-authors">Shi, Han, Liang, Wang, Li · Wuhan University</div>
+          <div class="paper-divider"></div>
+          <div class="paper-summary-label"><span data-lang="en" class="active">Summary</span><span data-lang="zh">摘要</span></div>
+          <p class="paper-summary">
+            <span data-lang="en" class="active">This paper introduced the bio-heat transfer model underpinning Haobo's thermal tomography system, formalising the mathematical and physical principles that govern how internal heat sources (tumours) produce measurable surface temperature distributions. The authors derived and validated the Q-r curve methodology — Haobo's core diagnostic algorithm — against mammography and B-ultrasound across 4 detailed clinical cases. Published in a leading engineering journal, this work bridges thermal physics and clinical oncology, establishing the theoretical foundation on which all subsequent large-scale validation studies were built.</span>
+            
+            <span data-lang="zh">本文介绍了支撑昊博热层析成像系统的生物传热模型，正式确立了内热源（肿瘤）产生可测表面温度分布的数学物理原理。作者推导并验证了q-r曲线方法——昊博核心诊断算法——通过4例详细临床病例与钼靶及B超对比。该成果发表于顶尖工程期刊，架起了热物理学与临床肿瘤学之间的桥梁，为后续所有大规模验证研究奠定了理论基础。</span>
+          </p>
+          <div class="paper-findings">
+            <div class="finding">
+              <div class="finding-num">4</div>
+              <div class="finding-label"><span data-lang="en" class="active">Clinical cases validated</span><span data-lang="zh">临床病例验证</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">Q-r</div>
+              <div class="finding-label"><span data-lang="en" class="active">Algorithm first introduced</span><span data-lang="zh">算法首次提出</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paper 6 -->
+      <div class="paper-card">
+        <div class="paper-accent"></div>
+        <div class="paper-body">
+          <div class="paper-meta-top">
+            <span class="paper-year">2008</span>
+            <span class="paper-journal">IEEE ICNC</span>
+            <span class="paper-tag"><span data-lang="en" class="active">Early Detection</span><span data-lang="zh">早期检测</span></span>
+          </div>
+          <div class="paper-title">
+            <span data-lang="en" class="active">Value-exploration of clinical breast diagnosis using thermal tomography — sensitivity, specificity, and cold-stimulation dynamic temperature analysis</span>
+            
+            <span data-lang="zh">热层析成像临床乳腺诊断价值探索——灵敏度、特异度及冷刺激动态温度分析</span>
+          </div>
+          <div class="paper-authors">Zhang, Li, Sun, Wan, Yao, Zhang · Wuhan University &amp; Hubei Cancer Hospital</div>
+          <div class="paper-divider"></div>
+          <div class="paper-summary-label"><span data-lang="en" class="active">Summary</span><span data-lang="zh">摘要</span></div>
+          <p class="paper-summary">
+            <span data-lang="en" class="active">One of the earliest peer-reviewed clinical validations of the technology, this study enrolled 355 patients across Wuhan University and Hubei Cancer Hospital to evaluate thermal tomography in a real-world breast clinic setting. Results demonstrated 90.1% sensitivity and 84.8% specificity. Notably, this paper introduced the cold-stimulation dynamic temperature analysis technique — a method that applies a controlled cold stimulus to enhance the contrast of tumour-related heat signatures, making it particularly effective for detecting very early-stage lesions that are otherwise difficult to distinguish from surrounding healthy tissue. This innovation remains a differentiating feature of Haobo's diagnostic approach.</span>
+            
+            <span data-lang="zh">这是该技术最早的同行评审临床验证之一，研究纳入武汉大学和湖北省肿瘤医院355例患者，在真实乳腺门诊环境中评估热层析成像。结果显示灵敏度90.1%，特异度84.8%。值得注意的是，本文首次引入冷刺激动态温度分析技术——通过施加受控冷刺激增强肿瘤相关热信号对比度，尤其适用于检测极早期病变，这是昊博诊断方法的核心差异化特征。</span>
+          </p>
+          <div class="paper-findings">
+            <div class="finding">
+              <div class="finding-num">355</div>
+              <div class="finding-label"><span data-lang="en" class="active">Patients enrolled</span><span data-lang="zh">入组患者</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">90.1%</div>
+              <div class="finding-label"><span data-lang="en" class="active">Sensitivity</span><span data-lang="zh">灵敏度</span></div>
+            </div>
+            <div class="finding">
+              <div class="finding-num">84.8%</div>
+              <div class="finding-label"><span data-lang="en" class="active">Specificity</span><span data-lang="zh">特异度</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="fc">© 2025 NexaGATS Healthcare &amp; Technology (M) Sdn. Bhd. · 202501041909 (1643318-W)</div>
+    <div class="fc">enquiries@nexagats.com · KL Eco City, Kuala Lumpur, Malaysia</div>
+  </div>
+</footer>
+
+<script>
+function setLang(l){
+  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lb').forEach(b=>{if(b.textContent.trim()===(l==='en'?'EN':'中文'))b.classList.add('active')});
+  document.querySelectorAll('[data-lang]').forEach(el=>{el.getAttribute('data-lang')===l?el.classList.add('active'):el.classList.remove('active')});
+}
+</script>
+</body>
+</html>
